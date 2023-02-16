@@ -1,48 +1,35 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './button.css';
 
 interface ButtonProps {
-  /**
-   * Is this the principal call to action on the page?
-   */
-  primary?: boolean;
-  /**
-   * What background color to use
-   */
+  radius?: number;
   backgroundColor?: string;
-  /**
-   * How large should the button be?
-   */
-  size?: 'small' | 'medium' | 'large';
-  /**
-   * Button contents
-   */
-  label: string;
-  /**
-   * Optional click handler
-   */
-  onClick?: () => void;
+  emoji: 'clap' | 'heart' | 'wave';
 }
 
-/**
- * Primary UI component for user interaction
- */
 export const Button = ({
-  primary = false,
-  size = 'medium',
+  radius = 50,
   backgroundColor,
-  label,
-  ...props
+  emoji = 'clap'
 }: ButtonProps) => {
-  const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
+  const [ccolor, setCcolor] = useState<string>("");
+  
+  function changeColor() {
+    const randomColor = Math.floor(Math.random()*16777215).toString(16);
+    setCcolor(randomColor);
+  }
+  
   return (
-    <button
-      type="button"
-      className={['storybook-button', `storybook-button--${size}`, mode].join(' ')}
-      style={{ backgroundColor }}
-      {...props}
-    >
-      {label}
+    <button 
+      className = {[
+        "text-5xl m-4 p-8 shadow-xl",
+        `bg-[#${ccolor}]`,
+        `rounded-[${radius}px]`,
+      ].join(' ')}
+      onClick={changeColor}
+      >
+      &#128079;
+      {emoji == 'clap' ? 'slap' : 'no'}
     </button>
   );
 };
