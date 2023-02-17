@@ -11,9 +11,15 @@ export default {
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 
 export const Default = Template.bind({});
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
 Default.args = {
   radius: 50,
-  backgroundColor: '#FFFFF',
+  backgroundColor: '#ff8b8b',
+  emoji: 'clap'
+};
+
+export const Circle = Template.bind({});
+Circle.args = {
+  radius: 100,
+  backgroundColor: 'blue',
   emoji: 'clap'
 };
